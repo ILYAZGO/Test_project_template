@@ -1,0 +1,53 @@
+stages:
+  - test
+  - report
+
+tests:
+  stage: test
+  resource_group: e2e-stand-requests
+  image: mcr.microsoft.com/playwright/python:v1.46.0-jammy
+  artifacts:
+    when: always
+    expire_in: 1 days
+    paths:
+      - exec.log
+      - allure-report
+  before_script:
+    - echo "Download and install java"
+    - apt update && apt install -y openjdk-17-jdk openjdk-17-jre
+    - echo "Download and install wget"
+    - apt-get install wget
+    - echo "Download and install allure"
+    - wget https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz && tar -zxvf allure-${ALLURE_VERSION}.tgz -C /opt/ && ln -s /opt/allure-${ALLURE_VERSION}/bin/allure /usr/bin/allure
+    - echo "Download and install requirements"
+    - pip install -r requirements.txt --default-timeout=100
+
+  script:
+    - echo $URL_FOR_TEST
+    - echo "Execute tests"
+    - pytest -n 20 --base-url ${URL_FOR_TEST} --reruns=${RERUNS_NUMBER} --alluredir=allure-results
+
+  after_script:
+    - echo "Send notification to telegram"
+    - if [ $CI_JOB_STATUS == 'failed' ]; then curl -s -X POST -d "chat_id=${TELEGRAM_CHAT_ID}&text=' !!! tests failed !!!%0A%0A$URL_FOR_TEST%0A%0AREPORT HERE ${REPORT_URL} '&parse_mode=Markdown" "https://api.telegram.org/bot${TELEGRAM_API_TOKEN}/sendMessage"; fi
+    - echo "Generate allure report"
+    - allure generate -c allure-results -o allure-report
+
+pages:
+    stage: report
+    tags:
+      - stand
+    when:
+      always
+    needs:
+        - tests
+    script:
+        - mkdir public
+        - cp -r allure-report/* public
+    #  you can specify steps to move your report if needed
+
+    artifacts:
+        when: always
+        expire_in: 7 days
+        paths:
+            - public

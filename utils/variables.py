@@ -1,0 +1,7 @@
+url = "https://fix-price.com/"
+login = ""
+name = "И"
+surname = "Ф"
+phone = "9169540252"
+email = "ilyasmustafin@imot.io"
+password = "PythonPlaywright1"
