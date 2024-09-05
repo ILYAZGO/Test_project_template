@@ -7,7 +7,7 @@ install requirements and browsers:
 
 from main directory:
 
-    pytest --base-url https://app.stand.imot.io/ru
+    pytest -sv --base-url https://fix-price.com/ tests/tests_login.py
 
    !PROFIT!
 

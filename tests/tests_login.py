@@ -19,10 +19,10 @@ And also allure steps i made for first 3 tests as example
 @allure.title("test_login_by_phone_correct_phone_correct_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_correct_phone_correct_password")
-def test_login_by_phone_correct_phone_correct_password(page):
+def test_login_by_phone_correct_phone_correct_password(base_url, page):
     login_page = LoginPage(page)
     with allure.step("Go to url"):
-        login_page.navigate()
+        login_page.navigate(base_url)
     with allure.step("Press (Enter) from main page"):
         login_page.press_enter_from_main_page()
     with allure.step("Try to login"):
@@ -37,10 +37,10 @@ def test_login_by_phone_correct_phone_correct_password(page):
 @allure.title("test_login_by_phone_empty_phone_empty_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_empty_phone_empty_password")
-def test_login_by_phone_empty_phone_empty_password(page):
+def test_login_by_phone_empty_phone_empty_password(base_url, page):
     login_page = LoginPage(page)
     with allure.step("Go to url"):
-        login_page.navigate()
+        login_page.navigate(base_url)
     with allure.step("Press (Enter) from main page"):
         login_page.press_enter_from_main_page()
     with allure.step("Press (Enter) from modal window"):
@@ -53,10 +53,10 @@ def test_login_by_phone_empty_phone_empty_password(page):
 @allure.title("test_login_by_phone_incorrect_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_incorrect_password")
-def test_login_by_phone_incorrect_password(page):
+def test_login_by_phone_incorrect_password(base_url, page):
     login_page = LoginPage(page)
     with allure.step("Go to url"):
-        login_page.navigate()
+        login_page.navigate(base_url)
     with allure.step("Press (Enter) from main page"):
         login_page.press_enter_from_main_page()
     with allure.step("Try to login"):
@@ -71,9 +71,9 @@ def test_login_by_phone_incorrect_password(page):
 @allure.title("test_login_by_phone_empty_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_empty_password")
-def test_login_by_phone_empty_password(page):
+def test_login_by_phone_empty_password(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.login_with_phone(phone, '')
     login_page.press_enter_from_modal_window()
@@ -84,9 +84,9 @@ def test_login_by_phone_empty_password(page):
 @allure.title("test_login_by_phone_invalid_phone")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_invalid_phone")
-def test_login_by_phone_invalid_phone(page):
+def test_login_by_phone_invalid_phone(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.login_with_phone("123456789", password)
     login_page.press_enter_from_modal_window()
@@ -97,9 +97,9 @@ def test_login_by_phone_invalid_phone(page):
 @allure.title("test_login_by_phone_from_other_country")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_from_other_country")
-def test_login_by_phone_from_other_country(page):
+def test_login_by_phone_from_other_country(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.login_with_phone("6919160252", password)
     login_page.press_enter_from_modal_window()
@@ -110,9 +110,9 @@ def test_login_by_phone_from_other_country(page):
 @allure.title("test_login_by_phone_letters_phone")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_phone_letters_phone")
-def test_login_by_phone_letters_phone(page):
+def test_login_by_phone_letters_phone(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.login_with_phone("number", password)
     login_page.press_enter_from_modal_window()
@@ -126,9 +126,9 @@ def test_login_by_phone_letters_phone(page):
 @allure.title("test_login_by_email_correct_email_correct_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_email_correct_email_correct_password")
-def test_login_by_email_correct_email_correct_password(page):
+def test_login_by_email_correct_email_correct_password(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.switch_toggle_switch()
     login_page.login_with_email(email, password)
@@ -141,9 +141,9 @@ def test_login_by_email_correct_email_correct_password(page):
 @allure.title("test_login_by_email_empty_email_empty_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_email_empty_email_empty_password")
-def test_login_by_email_empty_email_empty_password(page):
+def test_login_by_email_empty_email_empty_password(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.switch_toggle_switch()
     login_page.press_enter_from_modal_window()
@@ -155,9 +155,9 @@ def test_login_by_email_empty_email_empty_password(page):
 @allure.title("test_login_by_email_incorrect_password")
 @allure.severity(allure.severity_level.CRITICAL)
 @allure.description("test_login_by_email_incorrect_password")
-def test_login_by_email_incorrect_password(page):
+def test_login_by_email_incorrect_password(base_url, page):
     login_page = LoginPage(page)
-    login_page.navigate()
+    login_page.navigate(base_url)
     login_page.press_enter_from_main_page()
     login_page.switch_toggle_switch()
     login_page.login_with_email(email, 'incorrect_password')
